@@ -11,11 +11,13 @@ public class PenduVue extends JFrame implements MouseMotionListener {
 
     PenduModel Dm;
     JFrame fen = this;
+    JLabel label;
+    JPanel panel;
 
     public PenduVue(PenduModel Dm){
         this.Dm = Dm;
-        JPanel panel = new JPanel();
-        JLabel label = new JLabel("A - B - E - Z");
+        panel = new JPanel();
+        label = new JLabel("A - B - E - Z");
 
         panel.setPreferredSize(new Dimension(300, 200));
         panel.setBackground(Color.blue);
@@ -30,6 +32,10 @@ public class PenduVue extends JFrame implements MouseMotionListener {
         fen.add(label);
 
         addMouseMotionListener(this);
+    }
+
+    public JLabel getLabel() {
+        return label;
     }
 
     @Override
