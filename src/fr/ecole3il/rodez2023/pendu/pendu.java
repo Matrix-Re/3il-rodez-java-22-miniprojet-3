@@ -9,20 +9,9 @@ import java.awt.*;
 
 public class pendu {
     public static void main(String[] args) {
-
-        JFrame fen;
-        fen = new JFrame("Dessin");
-        fen.setBackground(Color.white);
-        fen.setSize(400, 300);
-
         PenduModel Dm = new PenduModel();
         PenduVue Dv = new PenduVue(Dm);
-        JButton button = new JButton();
-
-        PenduController Dc = new PenduController(Dm, Dv, button);
-
-        fen.add(Dv);
-        fen.setVisible(true);
-
+        
+        PenduController Dc = new PenduController(Dm, Dv);
     }
 }

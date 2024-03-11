@@ -11,10 +11,9 @@ public class PenduController {
     PenduVue vue;
     JButton button;
 
-    public PenduController(PenduModel model, PenduVue vue, JButton button){
+    public PenduController(PenduModel model, PenduVue vue){
         this.model = model;
         this.vue = vue;
-        this.button = button;
         //this.button.addActionListener(e -> OuvrirSelecteurCouleur());
     }
 
