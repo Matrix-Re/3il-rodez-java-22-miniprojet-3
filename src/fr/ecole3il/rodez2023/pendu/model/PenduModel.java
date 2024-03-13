@@ -12,8 +12,9 @@ import java.util.stream.Collectors;
 public class PenduModel {
 
     Mot mot;
+    Mot motCache;
 
-    List<Character> motsSaisies = new ArrayList<Character>();
+    List<Character> lettresSaisies = new ArrayList<Character>();
     public String fichier = System.getProperty("user.dir") + "/data/mots.txt";
 
     public void genererMot(){
@@ -26,9 +27,20 @@ public class PenduModel {
             String word = parts[0];
             String definition = parts.length > 1 ? parts[1] : "";
             mot = new Mot(word, definition);
+            motCache = new Mot("_ ".repeat(word.length()), definition);
         } catch (IOException e) {
             System.out.println("Error reading file");
             e.printStackTrace();
+        }
+    }
+
+    public void ajouterLettreSaisie(char lettre){
+        lettresSaisies.add(Character.toUpperCase(lettre));
+
+        for (int i = 0; i < mot.getMot().length(); i++) {
+            if (mot.getMot().charAt(i) == lettre) {
+                motCache.setMot(motCache.getMot().substring(0, i*2) + lettre + " " + motCache.getMot().substring(i*2 + 2));
+            }
         }
     }
 
@@ -36,18 +48,18 @@ public class PenduModel {
         return mot;
     }
 
-    public void ajouterMotSaisies(char mot){
-        motsSaisies.add(Character.toUpperCase(mot));
+    public Mot getMotCache(){
+        return motCache;
     }
 
-    public String getMotsSaisies() {
-        return motsSaisies.stream()
+    public String getLettresSaisies() {
+        return lettresSaisies.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(" - "));
     }
 
     public boolean isMotPresent(char mot) {
-        return motsSaisies.contains(Character.toUpperCase(mot));
+        return lettresSaisies.contains(Character.toUpperCase(mot));
     }
 
 }

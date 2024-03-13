@@ -16,4 +16,8 @@ public class Mot {
     public String getDefinition(){
         return definition;
     }
+
+    public void setMot(String mot) {
+        this.mot = mot;
+    }
 }
