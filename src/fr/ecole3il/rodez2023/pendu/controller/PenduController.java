@@ -10,11 +10,31 @@ import java.util.TimerTask;
 
 public class PenduController implements KeyListener {
 
+    /**
+     * Modèle du jeu du pendu.
+     */
     private PenduModel model;
+
+    /**
+     * Vue du jeu du pendu.
+     */
     private PenduVue vue;
+
+    /**
+     * Timer pour le compte à rebours du jeu.
+     */
     private Timer timer;
+
+    /**
+     * Temps restant pour le jeu.
+     */
     private int timeLeft = 0;
 
+    /**
+     * Constructeur de PenduController.
+     * @param model Modèle du jeu du pendu.
+     * @param vue Vue du jeu du pendu.
+     */
     public PenduController(PenduModel model, PenduVue vue){
         this.model = model;
         this.vue = vue;
@@ -22,6 +42,9 @@ public class PenduController implements KeyListener {
         this.vue.getBtnJouer().addActionListener(e -> Jouer());
     }
 
+    /**
+     * Méthode pour démarrer le jeu.
+     */
     private void Jouer() {
         vue.getLabelLettreSaisies().setVisible(true);
         vue.getLabelMotATrouver().setVisible(true);
@@ -58,13 +81,25 @@ public class PenduController implements KeyListener {
         }
     }
 
+    /**
+     * Méthode pour obtenir la vue du jeu.
+     * @return Vue du jeu du pendu.
+     */
     public PenduVue getVue(){
         return vue;
     }
 
+    /**
+     * Méthode appelée lorsqu'une touche est tapée.
+     * @param e Événement de touche.
+     */
     @Override
     public void keyTyped(KeyEvent e) { }
 
+    /**
+     * Méthode appelée lorsqu'une touche est pressée.
+     * @param e Événement de touche.
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         char keyChar = e.getKeyChar();
@@ -90,9 +125,16 @@ public class PenduController implements KeyListener {
         }
     }
 
+    /**
+     * Méthode appelée lorsqu'une touche est relâchée.
+     * @param e Événement de touche.
+     */
     @Override
     public void keyReleased(KeyEvent e) { }
 
+    /**
+     * Méthode pour mettre à jour la vue.
+     */
     public void UpdateView(){
         vue.getLabelLettreSaisies().setText("Lettres proposés : " + model.getLettresSaisies());
         vue.getLabelMotATrouver().setText(model.getMotCache().getMot());
@@ -113,6 +155,9 @@ public class PenduController implements KeyListener {
         }
     }
 
+    /**
+     * Méthode appelée lorsque le jeu est terminé.
+     */
     public void JeuFini(){
         vue.getBtnJouer().setText("Rejouer");
         vue.getLabDeffinition().setVisible(false);
