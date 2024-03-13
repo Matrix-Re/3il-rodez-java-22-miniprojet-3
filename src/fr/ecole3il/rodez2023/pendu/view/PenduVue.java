@@ -25,7 +25,9 @@ public class PenduVue extends JFrame implements MouseMotionListener {
         labInfo = new JLabel();
         btnRejouer = new JButton("Rejouer");
 
-        btnRejouer.setVisible(false);
+        labDeffinition.setVisible(false);
+        labLettresSaisies.setVisible(false);
+        labMotATrouver.setVisible(false);
 
         fen.setTitle("Pendu");
         fen.setLayout(new GridLayout(2, 1));

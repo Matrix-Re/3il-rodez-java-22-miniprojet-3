@@ -15,12 +15,14 @@ public class PenduController implements KeyListener {
         this.model = model;
         this.vue = vue;
         this.vue.addKeyListener(this);
-        this.vue.getBtnRejouer().addActionListener(e -> Rejouer());
-
-        Rejouer();
+        this.vue.getBtnRejouer().addActionListener(e -> Jouer());
     }
 
-    private void Rejouer() {
+    private void Jouer() {
+        vue.getLabDeffinition().setVisible(true);
+        vue.getLabelLettreSaisies().setVisible(true);
+        vue.getLabelMotATrouver().setVisible(true);
+
         model.genererMot();
         System.out.println(model.getMot().getMot());
         model.setJeuFini(false);
