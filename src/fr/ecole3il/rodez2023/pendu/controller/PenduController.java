@@ -15,13 +15,15 @@ public class PenduController implements KeyListener {
         this.model = model;
         this.vue = vue;
         this.vue.addKeyListener(this);
-        this.vue.getBtnRejouer().addActionListener(e -> Jouer());
+        this.vue.getBtnJouer().addActionListener(e -> Jouer());
+
     }
 
     private void Jouer() {
         vue.getLabDeffinition().setVisible(true);
         vue.getLabelLettreSaisies().setVisible(true);
         vue.getLabelMotATrouver().setVisible(true);
+        vue.getCbxModeDifficile().setVisible(false);
 
         model.genererMot();
         System.out.println(model.getMot().getMot());
@@ -29,7 +31,8 @@ public class PenduController implements KeyListener {
         model.resetNbEssais();
         model.videLettresSaisies();
         UpdateView();
-        vue.getBtnRejouer().setVisible(false);
+        vue.getBtnJouer().setVisible(false);
+        vue.requestFocusInWindow();
     }
 
     public PenduVue getVue(){
@@ -50,13 +53,13 @@ public class PenduController implements KeyListener {
                 if (model.getMot().getMot().contains(String.valueOf(keyChar))){
                     model.lettreTrouvee(keyChar);
                     if (model.getMotCache().getMot().equals(model.getMot().getMot())){
-                        model.setJeuFini(true);
+                        JeuFini();
                     }
                 } else {
                     model.ajouterLettreSaisie(keyChar);
                     model.incrementNbEssais();
                     if (model.getNbEssais() >= 8){
-                        model.setJeuFini(true);
+                        JeuFini();
                     }
                 }
                 UpdateView();
@@ -76,10 +79,20 @@ public class PenduController implements KeyListener {
                 vue.getLabInfo().setText("Gagné !");
             } else{
                 vue.getLabInfo().setText("Perdu ! le mot était : " + model.getMot().getMot());
-                vue.getBtnRejouer().setVisible(true);
+                vue.getBtnJouer().setVisible(true);
             }
         } else {
             vue.getLabInfo().setText("Nombre d'essais : " + model.getNbEssais());
         }
+    }
+
+    public void JeuFini(){
+        vue.getBtnJouer().setText("Rejouer");
+        vue.getLabDeffinition().setVisible(false);
+        vue.getLabelLettreSaisies().setVisible(false);
+        vue.getLabelMotATrouver().setVisible(false);
+        vue.getCbxModeDifficile().setVisible(true);
+        vue.getBtnJouer().setVisible(true);
+        model.setJeuFini(true);
     }
 }

@@ -15,7 +15,8 @@ public class PenduVue extends JFrame implements MouseMotionListener {
     JLabel labMotATrouver;
     JLabel labDeffinition;
     JLabel labInfo;
-    JButton btnRejouer;
+    JButton btnJouer;
+    JCheckBox cbxModeDifficile;
 
     public PenduVue(PenduModel Dm){
         this.Dm = Dm;
@@ -23,7 +24,8 @@ public class PenduVue extends JFrame implements MouseMotionListener {
         labMotATrouver = new JLabel();
         labDeffinition = new JLabel();
         labInfo = new JLabel();
-        btnRejouer = new JButton("Rejouer");
+        btnJouer = new JButton("Jouer");
+        cbxModeDifficile = new JCheckBox("Mode difficile");
 
         labDeffinition.setVisible(false);
         labLettresSaisies.setVisible(false);
@@ -40,7 +42,8 @@ public class PenduVue extends JFrame implements MouseMotionListener {
         fen.add(labMotATrouver);
         fen.add(labDeffinition);
         fen.add(labInfo);
-        fen.add(btnRejouer);
+        fen.add(btnJouer);
+        fen.add(cbxModeDifficile);
 
         addMouseMotionListener(this);
     }
@@ -61,8 +64,12 @@ public class PenduVue extends JFrame implements MouseMotionListener {
         return labInfo;
     }
 
-    public JButton getBtnRejouer() {
-        return btnRejouer;
+    public JButton getBtnJouer() {
+        return btnJouer;
+    }
+
+    public JCheckBox getCbxModeDifficile() {
+        return cbxModeDifficile;
     }
 
     @Override

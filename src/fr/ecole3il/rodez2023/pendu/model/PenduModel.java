@@ -15,7 +15,7 @@ public class PenduModel {
     private Mot motCache;
     private int nbEssais = 0;
 
-    private boolean jeuFini = false;
+    private boolean jeuFini = true;
 
     List<Character> lettresSaisies = new ArrayList<Character>();
     public String fichier = System.getProperty("user.dir") + "/data/mots.txt";
