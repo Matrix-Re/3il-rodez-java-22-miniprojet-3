@@ -9,14 +9,14 @@ import java.awt.event.MouseMotionListener;
 
 public class PenduVue extends JFrame implements MouseMotionListener {
 
-    PenduModel Dm;
-    JFrame fen = this;
-    JLabel labLettresSaisies;
-    JLabel labMotATrouver;
-    JLabel labDeffinition;
-    JLabel labInfo;
-    JButton btnJouer;
-    JCheckBox cbxModeDifficile;
+    private PenduModel Dm;
+    private JFrame fen = this;
+    private JLabel labLettresSaisies;
+    private JLabel labMotATrouver;
+    private JLabel labDeffinition;
+    private JLabel labInfo;
+    private JButton btnJouer;
+    private JCheckBox cbxModeDifficile;
 
     public PenduVue(PenduModel Dm){
         this.Dm = Dm;

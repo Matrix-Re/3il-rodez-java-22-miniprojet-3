@@ -8,8 +8,8 @@ import java.awt.event.KeyListener;
 
 public class PenduController implements KeyListener {
 
-    PenduModel model;
-    PenduVue vue;
+    private PenduModel model;
+    private PenduVue vue;
 
     public PenduController(PenduModel model, PenduVue vue){
         this.model = model;
