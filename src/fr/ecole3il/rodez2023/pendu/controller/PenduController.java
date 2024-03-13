@@ -15,11 +15,19 @@ public class PenduController implements KeyListener {
         this.model = model;
         this.vue = vue;
         this.vue.addKeyListener(this);
+        this.vue.getBtnRejouer().addActionListener(e -> Rejouer());
 
+        Rejouer();
+    }
+
+    private void Rejouer() {
         model.genererMot();
         System.out.println(model.getMot().getMot());
-
+        model.setJeuFini(false);
+        model.resetNbEssais();
+        model.videLettresSaisies();
         UpdateView();
+        vue.getBtnRejouer().setVisible(false);
     }
 
     public PenduVue getVue(){
@@ -33,15 +41,24 @@ public class PenduController implements KeyListener {
     public void keyPressed(KeyEvent e) {
         char keyChar = e.getKeyChar();
 
-        /** On vérifie que le mot n'a pas déjà été proposé que la touche appuyée est une lettre */
-        if (!model.isMotPresent(keyChar) && Character.isLetter(keyChar)){
-            /** On vérifiela lettre n'est pas dans le mot */
-            if (model.getMot().getMot().contains(String.valueOf(keyChar))){
-                model.lettreTrouvee(keyChar);
-            } else {
-                model.ajouterLettreSaisie(keyChar);
+        if (!model.isJeuFini()){
+            /** On vérifie que le mot n'a pas déjà été proposé que la touche appuyée est une lettre */
+            if (!model.isMotPresent(keyChar) && Character.isLetter(keyChar)){
+                /** On vérifiela lettre n'est pas dans le mot */
+                if (model.getMot().getMot().contains(String.valueOf(keyChar))){
+                    model.lettreTrouvee(keyChar);
+                    if (model.getMotCache().getMot().equals(model.getMot().getMot())){
+                        model.setJeuFini(true);
+                    }
+                } else {
+                    model.ajouterLettreSaisie(keyChar);
+                    model.incrementNbEssais();
+                    if (model.getNbEssais() >= 8){
+                        model.setJeuFini(true);
+                    }
+                }
+                UpdateView();
             }
-            UpdateView();
         }
     }
 
@@ -52,5 +69,15 @@ public class PenduController implements KeyListener {
         vue.getLabelLettreSaisies().setText("Lettres proposés : " + model.getLettresSaisies());
         vue.getLabelMotATrouver().setText(model.getMotCache().getMot());
         vue.getLabDeffinition().setText(model.getMot().getDefinition());
+        if (model.isJeuFini()){
+            if (model.getMotCache().getMot().equals(model.getMot().getMot())){
+                vue.getLabInfo().setText("Gagné !");
+            } else{
+                vue.getLabInfo().setText("Perdu ! le mot était : " + model.getMot().getMot());
+                vue.getBtnRejouer().setVisible(true);
+            }
+        } else {
+            vue.getLabInfo().setText("Nombre d'essais : " + model.getNbEssais());
+        }
     }
 }

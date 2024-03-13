@@ -11,8 +11,11 @@ import java.util.stream.Collectors;
 
 public class PenduModel {
 
-    Mot mot;
-    Mot motCache;
+    private Mot mot;
+    private Mot motCache;
+    private int nbEssais = 0;
+
+    private boolean jeuFini = false;
 
     List<Character> lettresSaisies = new ArrayList<Character>();
     public String fichier = System.getProperty("user.dir") + "/data/mots.txt";
@@ -27,7 +30,7 @@ public class PenduModel {
             String word = parts[0];
             String definition = parts.length > 1 ? parts[1] : "";
             mot = new Mot(word, definition);
-            motCache = new Mot("_ ".repeat(word.length()), definition);
+            motCache = new Mot("_".repeat(word.length()), definition);
         } catch (IOException e) {
             System.out.println("Error reading file");
             e.printStackTrace();
@@ -39,11 +42,13 @@ public class PenduModel {
     }
 
     public void lettreTrouvee(char lettre){
+        StringBuilder motCacheBuilder = new StringBuilder(motCache.getMot());
         for (int i = 0; i < mot.getMot().length(); i++) {
             if (mot.getMot().charAt(i) == lettre) {
-                motCache.setMot(motCache.getMot().substring(0, i * 2) + lettre + motCache.getMot().substring(i * 2 + 1));
+                motCacheBuilder.setCharAt(i, lettre);
             }
         }
+        motCache.setMot(motCacheBuilder.toString());
     }
 
     public Mot getMot(){
@@ -60,8 +65,32 @@ public class PenduModel {
                 .collect(Collectors.joining(" - "));
     }
 
+    public void videLettresSaisies() {
+        lettresSaisies.clear();
+    }
+
     public boolean isMotPresent(char mot) {
         return lettresSaisies.contains(Character.toUpperCase(mot));
+    }
+
+    public int getNbEssais() {
+        return nbEssais;
+    }
+
+    public void incrementNbEssais() {
+        this.nbEssais++;
+    }
+
+    public void resetNbEssais() {
+        this.nbEssais = 0;
+    }
+
+    public boolean isJeuFini() {
+        return jeuFini;
+    }
+
+    public void setJeuFini(boolean jeuFini) {
+        this.jeuFini = jeuFini;
     }
 
 }

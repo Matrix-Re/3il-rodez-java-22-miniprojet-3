@@ -14,17 +14,18 @@ public class PenduVue extends JFrame implements MouseMotionListener {
     JLabel labLettresSaisies;
     JLabel labMotATrouver;
     JLabel labDeffinition;
-    JPanel panel;
+    JLabel labInfo;
+    JButton btnRejouer;
 
     public PenduVue(PenduModel Dm){
         this.Dm = Dm;
-        panel = new JPanel();
         labLettresSaisies = new JLabel();
         labMotATrouver = new JLabel();
         labDeffinition = new JLabel();
+        labInfo = new JLabel();
+        btnRejouer = new JButton("Rejouer");
 
-        panel.setPreferredSize(new Dimension(300, 200));
-        panel.setBackground(Color.blue);
+        btnRejouer.setVisible(false);
 
         fen.setTitle("Pendu");
         fen.setLayout(new GridLayout(2, 1));
@@ -33,10 +34,11 @@ public class PenduVue extends JFrame implements MouseMotionListener {
         fen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fen.setVisible(true);
 
-        fen.add(panel);
         fen.add(labLettresSaisies);
         fen.add(labMotATrouver);
         fen.add(labDeffinition);
+        fen.add(labInfo);
+        fen.add(btnRejouer);
 
         addMouseMotionListener(this);
     }
@@ -51,6 +53,14 @@ public class PenduVue extends JFrame implements MouseMotionListener {
 
     public JLabel getLabDeffinition() {
         return labDeffinition;
+    }
+
+    public JLabel getLabInfo() {
+        return labInfo;
+    }
+
+    public JButton getBtnRejouer() {
+        return btnRejouer;
     }
 
     @Override
