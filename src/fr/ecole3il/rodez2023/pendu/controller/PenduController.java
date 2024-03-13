@@ -5,24 +5,28 @@ import fr.ecole3il.rodez2023.pendu.view.PenduVue;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class PenduController implements KeyListener {
 
     private PenduModel model;
     private PenduVue vue;
+    private Timer timer;
+    private int timeLeft = 0;
 
     public PenduController(PenduModel model, PenduVue vue){
         this.model = model;
         this.vue = vue;
         this.vue.addKeyListener(this);
         this.vue.getBtnJouer().addActionListener(e -> Jouer());
-
     }
 
     private void Jouer() {
         vue.getLabDeffinition().setVisible(true);
         vue.getLabelLettreSaisies().setVisible(true);
         vue.getLabelMotATrouver().setVisible(true);
+        vue.getLabTempsRestant().setVisible(true);
         vue.getCbxModeDifficile().setVisible(false);
 
         model.genererMot();
@@ -33,6 +37,22 @@ public class PenduController implements KeyListener {
         UpdateView();
         vue.getBtnJouer().setVisible(false);
         vue.requestFocusInWindow();
+
+        timeLeft = 90;
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                timeLeft--;
+                vue.getLabTempsRestant().setText("Temps restant : " + timeLeft + "s");
+
+                if (timeLeft <= 0) {
+                    timer.cancel();
+                    JeuFini();
+                    UpdateView();
+                }
+            }
+        }, 0, 1000);
     }
 
     public PenduVue getVue(){
@@ -78,7 +98,11 @@ public class PenduController implements KeyListener {
             if (model.getMotCache().getMot().equals(model.getMot().getMot())){
                 vue.getLabInfo().setText("Gagné !");
             } else{
-                vue.getLabInfo().setText("Perdu ! le mot était : " + model.getMot().getMot());
+                if (timeLeft <= 0) {
+                    vue.getLabInfo().setText("Perdu ! le mot était : " + model.getMot().getMot());
+                } else {
+                    vue.getLabInfo().setText("Perdu ! le temps est écoulé ! le mot était : " + model.getMot().getMot());
+                }
                 vue.getBtnJouer().setVisible(true);
             }
         } else {
@@ -91,6 +115,7 @@ public class PenduController implements KeyListener {
         vue.getLabDeffinition().setVisible(false);
         vue.getLabelLettreSaisies().setVisible(false);
         vue.getLabelMotATrouver().setVisible(false);
+        vue.getLabTempsRestant().setVisible(false);
         vue.getCbxModeDifficile().setVisible(true);
         vue.getBtnJouer().setVisible(true);
         model.setJeuFini(true);

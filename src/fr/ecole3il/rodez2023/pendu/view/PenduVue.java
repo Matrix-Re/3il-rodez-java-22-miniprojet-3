@@ -15,6 +15,7 @@ public class PenduVue extends JFrame implements MouseMotionListener {
     private JLabel labMotATrouver;
     private JLabel labDeffinition;
     private JLabel labInfo;
+    private JLabel labTempsRestant;
     private JButton btnJouer;
     private JCheckBox cbxModeDifficile;
 
@@ -24,12 +25,14 @@ public class PenduVue extends JFrame implements MouseMotionListener {
         labMotATrouver = new JLabel();
         labDeffinition = new JLabel();
         labInfo = new JLabel();
+        labTempsRestant = new JLabel();
         btnJouer = new JButton("Jouer");
         cbxModeDifficile = new JCheckBox("Mode difficile");
 
         labDeffinition.setVisible(false);
         labLettresSaisies.setVisible(false);
         labMotATrouver.setVisible(false);
+        labTempsRestant.setVisible(false);
 
         fen.setTitle("Pendu");
         fen.setLayout(new GridLayout(2, 1));
@@ -42,6 +45,7 @@ public class PenduVue extends JFrame implements MouseMotionListener {
         fen.add(labMotATrouver);
         fen.add(labDeffinition);
         fen.add(labInfo);
+        fen.add(labTempsRestant);
         fen.add(btnJouer);
         fen.add(cbxModeDifficile);
 
@@ -62,6 +66,10 @@ public class PenduVue extends JFrame implements MouseMotionListener {
 
     public JLabel getLabInfo() {
         return labInfo;
+    }
+
+    public JLabel getLabTempsRestant() {
+        return labTempsRestant;
     }
 
     public JButton getBtnJouer() {
