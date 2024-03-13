@@ -26,6 +26,7 @@ public class PenduVue extends JFrame implements MouseMotionListener {
         fen.setLayout(new GridLayout(2, 1));
         fen.setBackground(Color.white);
         fen.setSize(400, 300);
+        fen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fen.setVisible(true);
 
         fen.add(panel);

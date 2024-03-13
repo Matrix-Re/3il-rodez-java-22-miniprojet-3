@@ -31,7 +31,7 @@ public class PenduController implements KeyListener {
     public void keyPressed(KeyEvent e) {
         if (!model.isMotPresent(e.getKeyChar())) {
             model.ajouterMotSaisies(e.getKeyChar());
-            vue.getLabel().setText(model.getMotsSaisies());
+            vue.getLabel().setText("Lettres proposés : " + model.getMotsSaisies());
         }
     }
 
