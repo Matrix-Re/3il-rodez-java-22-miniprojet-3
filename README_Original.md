@@ -34,17 +34,17 @@ Nous approchons bientôt des huit mois de pratique en Java, et jusqu'à présent
 
 ## Fonctionnalités attendues
 
-1. Lecture aléatoire d'un mot à deviner à partir d'un fichier texte donné à la racine du projet.
-2. Affichage graphique de l'interface du jeu à l'aide de Swing.
+1. ~~Lecture aléatoire d'un mot à deviner à partir d'un fichier texte donné à la racine du projet.~~
+2. ~~Affichage graphique de l'interface du jeu à l'aide de Swing.~~
 3. Affichage graphique du pendu qui évolue en fonction des erreurs du joueur.
-4. Affichage graphique des lettres déjà proposées par le joueur.
+4. ~~Affichage graphique des lettres déjà proposées par le joueur.~~
 5. Affichage (ou non) de la définition (niveau de difficulté).
 6. Utilisation (ou non) d'un timer (niveau de difficulté).
-7. Gestion des entrées utilisateur pour proposer des lettres.
-8. Vérification de la validité des entrées utilisateur (lettre de l'alphabet uniquement).
-9. Gestion du décompte des tentatives restantes.
-10. Gestion de la victoire ou de la défaite du joueur.
-11. Possibilité de rejouer une partie après la fin d'une partie.
+7. ~~Gestion des entrées utilisateur pour proposer des lettres.~~
+8. ~~Vérification de la validité des entrées utilisateur (lettre de l'alphabet uniquement).~~
+9. ~~Gestion du décompte des tentatives restantes.~~
+10. ~~Gestion de la victoire ou de la défaite du joueur.~~
+11. ~~Possibilité de rejouer une partie après la fin d'une partie.~~
 
 ## Contraintes techniques
 
