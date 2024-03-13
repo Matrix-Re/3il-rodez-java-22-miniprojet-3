@@ -23,7 +23,6 @@ public class PenduController implements KeyListener {
     }
 
     private void Jouer() {
-        vue.getLabDeffinition().setVisible(true);
         vue.getLabelLettreSaisies().setVisible(true);
         vue.getLabelMotATrouver().setVisible(true);
         vue.getLabTempsRestant().setVisible(true);
@@ -38,21 +37,25 @@ public class PenduController implements KeyListener {
         vue.getBtnJouer().setVisible(false);
         vue.requestFocusInWindow();
 
-        timeLeft = 90;
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                timeLeft--;
-                vue.getLabTempsRestant().setText("Temps restant : " + timeLeft + "s");
+        if (vue.getCbxModeDifficile().isSelected()){
+            timeLeft = 90;
+            timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    timeLeft--;
+                    vue.getLabTempsRestant().setText("Temps restant : " + timeLeft + "s");
 
-                if (timeLeft <= 0) {
-                    timer.cancel();
-                    JeuFini();
-                    UpdateView();
+                    if (timeLeft <= 0) {
+                        timer.cancel();
+                        JeuFini();
+                        UpdateView();
+                    }
                 }
-            }
-        }, 0, 1000);
+            }, 0, 1000);
+        } else {
+            vue.getLabDeffinition().setVisible(true);
+        }
     }
 
     public PenduVue getVue(){
