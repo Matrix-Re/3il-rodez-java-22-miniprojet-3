@@ -9,9 +9,13 @@ import java.awt.*;
 
 public class pendu {
     public static void main(String[] args) {
-        PenduModel Dm = new PenduModel();
-        PenduVue Dv = new PenduVue(Dm);
-        
-        PenduController Dc = new PenduController(Dm, Dv);
+        try {
+            PenduModel Dm = new PenduModel();
+            PenduVue Dv = new PenduVue(Dm);
+
+            PenduController Dc = new PenduController(Dm, Dv);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
