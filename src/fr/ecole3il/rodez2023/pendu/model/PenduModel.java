@@ -36,10 +36,12 @@ public class PenduModel {
 
     public void ajouterLettreSaisie(char lettre){
         lettresSaisies.add(Character.toUpperCase(lettre));
+    }
 
+    public void lettreTrouvee(char lettre){
         for (int i = 0; i < mot.getMot().length(); i++) {
             if (mot.getMot().charAt(i) == lettre) {
-                motCache.setMot(motCache.getMot().substring(0, i*2) + lettre + " " + motCache.getMot().substring(i*2 + 2));
+                motCache.setMot(motCache.getMot().substring(0, i * 2) + lettre + motCache.getMot().substring(i * 2 + 1));
             }
         }
     }

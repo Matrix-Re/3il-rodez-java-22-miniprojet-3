@@ -1,6 +1,5 @@
 package fr.ecole3il.rodez2023.pendu.view;
 
-import fr.ecole3il.rodez2023.pendu.model.Mot;
 import fr.ecole3il.rodez2023.pendu.model.PenduModel;
 
 import javax.swing.*;
@@ -12,15 +11,17 @@ public class PenduVue extends JFrame implements MouseMotionListener {
 
     PenduModel Dm;
     JFrame fen = this;
-    JLabel labMotSaisies;
+    JLabel labLettresSaisies;
     JLabel labMotATrouver;
+    JLabel labDeffinition;
     JPanel panel;
 
     public PenduVue(PenduModel Dm){
         this.Dm = Dm;
         panel = new JPanel();
-        labMotSaisies = new JLabel();
+        labLettresSaisies = new JLabel();
         labMotATrouver = new JLabel();
+        labDeffinition = new JLabel();
 
         panel.setPreferredSize(new Dimension(300, 200));
         panel.setBackground(Color.blue);
@@ -33,14 +34,23 @@ public class PenduVue extends JFrame implements MouseMotionListener {
         fen.setVisible(true);
 
         fen.add(panel);
-        fen.add(labMotSaisies);
+        fen.add(labLettresSaisies);
         fen.add(labMotATrouver);
+        fen.add(labDeffinition);
 
         addMouseMotionListener(this);
     }
 
-    public JLabel getLabel() {
-        return labMotSaisies;
+    public JLabel getLabelLettreSaisies() {
+        return labLettresSaisies;
+    }
+
+    public JLabel getLabelMotATrouver() {
+        return labMotATrouver;
+    }
+
+    public JLabel getLabDeffinition() {
+        return labDeffinition;
     }
 
     @Override

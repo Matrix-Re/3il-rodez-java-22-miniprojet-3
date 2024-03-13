@@ -33,9 +33,14 @@ public class PenduController implements KeyListener {
     public void keyPressed(KeyEvent e) {
         char keyChar = e.getKeyChar();
 
-        // On vérifie que le mot n'a pas déjà été proposé et que la touche appuyée est une lettre
-        if (!model.isMotPresent(keyChar) && Character.isLetter(keyChar)) {
-            model.ajouterLettreSaisie(e.getKeyChar());
+        /** On vérifie que le mot n'a pas déjà été proposé que la touche appuyée est une lettre */
+        if (!model.isMotPresent(keyChar) && Character.isLetter(keyChar)){
+            /** On vérifiela lettre n'est pas dans le mot */
+            if (model.getMot().getMot().contains(String.valueOf(keyChar))){
+                model.lettreTrouvee(keyChar);
+            } else {
+                model.ajouterLettreSaisie(keyChar);
+            }
             UpdateView();
         }
     }
@@ -44,7 +49,8 @@ public class PenduController implements KeyListener {
     public void keyReleased(KeyEvent e) { }
 
     public void UpdateView(){
-        vue.getLabel().setText("Lettres proposés : " + model.getLettresSaisies());
-        vue.getLabel().setText(model.getMotCache().getMot());
+        vue.getLabelLettreSaisies().setText("Lettres proposés : " + model.getLettresSaisies());
+        vue.getLabelMotATrouver().setText(model.getMotCache().getMot());
+        vue.getLabDeffinition().setText(model.getMot().getDefinition());
     }
 }
